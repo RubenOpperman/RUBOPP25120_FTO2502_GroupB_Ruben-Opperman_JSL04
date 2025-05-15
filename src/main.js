@@ -45,7 +45,23 @@ const todoContainer = document.getElementById("todo-container");
 const doingContainer = document.getElementById("doing-container");
 const doneContainer = document.getElementById("done-container");
 
-function LoadTasks(tasksArray) {
+const modal = document.getElementById("edit-modal");
+const titleInput = document.getElementById("modal-title");
+const descriptionInput = document.getElementById("modal-description");
+const statusSelect = document.getElementById("modal-status");
+
+let selectedTask = null;
+function openModal(task) {
+  selectedTask = task;
+
+  titleInput.value = task.title;
+  descriptionInput.value = task.description;
+  statusSelect.value = task.status;
+
+  modal.classList.remove("hidden");
+}
+
+function LoadTodoTasks(tasksArray) {
   tasksArray.forEach((element) => {
     if (element.status === "todo") {
       let todoTask = document.createElement("div");
@@ -63,11 +79,14 @@ function LoadTasks(tasksArray) {
         "rounded-md",
         "shadow-lg"
       );
+      todoTask.addEventListener("click", () => openModal(element));
 
       todoContainer.appendChild(todoTask);
     }
   });
+}
 
+function LoadDoingTasks(tasksArray) {
   tasksArray.forEach((element) => {
     if (element.status === "doing") {
       let doingTask = document.createElement("div");
@@ -85,11 +104,13 @@ function LoadTasks(tasksArray) {
         "rounded-md",
         "shadow-lg"
       );
+      doingTask.addEventListener("click", () => openModal(element));
 
       doingContainer.appendChild(doingTask);
     }
   });
-
+}
+function LoadDoneTasks(tasksArray) {
   tasksArray.forEach((element) => {
     if (element.status === "done") {
       let doneTask = document.createElement("div");
@@ -107,10 +128,13 @@ function LoadTasks(tasksArray) {
         "rounded-md",
         "shadow-lg"
       );
+      doneTask.addEventListener("click", () => openModal(element));
 
       doneContainer.appendChild(doneTask);
     }
   });
 }
 
-LoadTasks(initialTasks);
+LoadTodoTasks(initialTasks);
+LoadDoingTasks(initialTasks);
+LoadDoneTasks(initialTasks);
