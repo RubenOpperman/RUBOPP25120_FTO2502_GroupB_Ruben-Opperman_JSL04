@@ -40,3 +40,77 @@ const initialTasks = [
     status: "done",
   },
 ];
+
+const todoContainer = document.getElementById("todo-container");
+const doingContainer = document.getElementById("doing-container");
+const doneContainer = document.getElementById("done-container");
+
+function LoadTasks(tasksArray) {
+  tasksArray.forEach((element) => {
+    if (element.status === "todo") {
+      let todoTask = document.createElement("div");
+      todoTask.innerText = element.title;
+
+      todoTask.classList.add(
+        "bg-primary-color",
+        "text-primary-font-color",
+        "leading-[19px]",
+        "text-sm",
+        "font-bold",
+        "mb-5",
+        "py-5",
+        "pl-5",
+        "rounded-md",
+        "shadow-lg"
+      );
+
+      todoContainer.appendChild(todoTask);
+    }
+  });
+
+  tasksArray.forEach((element) => {
+    if (element.status === "doing") {
+      let doingTask = document.createElement("div");
+      doingTask.innerText = element.title;
+
+      doingTask.classList.add(
+        "bg-primary-color",
+        "text-primary-font-color",
+        "leading-[19px]",
+        "text-sm",
+        "font-bold",
+        "mb-5",
+        "py-5",
+        "pl-5",
+        "rounded-md",
+        "shadow-lg"
+      );
+
+      doingContainer.appendChild(doingTask);
+    }
+  });
+
+  tasksArray.forEach((element) => {
+    if (element.status === "done") {
+      let doneTask = document.createElement("div");
+      doneTask.innerText = element.title;
+
+      doneTask.classList.add(
+        "bg-primary-color",
+        "text-primary-font-color",
+        "leading-[19px]",
+        "text-sm",
+        "font-bold",
+        "mb-5",
+        "py-5",
+        "pl-5",
+        "rounded-md",
+        "shadow-lg"
+      );
+
+      doneContainer.appendChild(doneTask);
+    }
+  });
+}
+
+LoadTasks(initialTasks);
