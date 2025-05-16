@@ -1,3 +1,4 @@
+// array of objects containing tasks
 const initialTasks = [
   {
     id: 1,
@@ -17,7 +18,6 @@ const initialTasks = [
     description: "You're almost there",
     status: "doing",
   },
-
   {
     id: 4,
     title: "Learn Data Structures and Algorithms 📚",
@@ -44,7 +44,6 @@ const initialTasks = [
 const todoContainer = document.getElementById("todo-container");
 const doingContainer = document.getElementById("doing-container");
 const doneContainer = document.getElementById("done-container");
-
 const modal = document.getElementById("edit-modal");
 const titleInput = document.getElementById("modal-title");
 const descriptionInput = document.getElementById("modal-description");
@@ -52,6 +51,12 @@ const statusSelect = document.getElementById("modal-status");
 const closeModalBtn = document.getElementById("close-modal");
 
 let selectedTask = null;
+
+/**
+ * This function activates when a task is clicked and then retrieves the task clicked and opens a modal.
+ *
+ * @param {object} tasks - id, title, description and status.
+ */
 function openModal(task) {
   selectedTask = task;
 
@@ -62,11 +67,25 @@ function openModal(task) {
   modal.showModal();
 }
 
-function LoadTodoTasks(tasksArray) {
-  tasksArray.forEach((element) => {
-    if (element.status === "todo") {
-      let todoTask = document.createElement("div");
-      todoTask.innerText = element.title;
+/**
+ * This function closes the modal.
+ */
+function closeModal() {
+  modal.close();
+  selectedTask = null;
+  titleInput.value = "";
+  descriptionInput.value = "";
+  statusSelect.value = "";
+}
+/**
+ * This function takes in an array and sorts the tasks with the status todo and displays them dynamically.
+ * @param {array} tasks -array of objects.
+ */
+function loadTodoTasks(tasks) {
+  tasks.forEach((task) => {
+    if (task.status === "todo") {
+      const todoTask = document.createElement("div");
+      todoTask.innerText = task.title;
 
       todoTask.classList.add(
         "bg-primary-color",
@@ -80,27 +99,21 @@ function LoadTodoTasks(tasksArray) {
         "rounded-md",
         "shadow-lg"
       );
-      todoTask.addEventListener("click", () => openModal(element));
+      todoTask.addEventListener("click", () => openModal(task));
 
       todoContainer.appendChild(todoTask);
     }
   });
 }
-function closeModal() {
-  modal.close();
-  selectedTask = null;
-  titleInput.value = "";
-  descriptionInput.value = "";
-  statusSelect.value = "";
-}
-
-closeModalBtn.addEventListener("click", closeModal);
-
-function LoadDoingTasks(tasksArray) {
-  tasksArray.forEach((element) => {
-    if (element.status === "doing") {
-      let doingTask = document.createElement("div");
-      doingTask.innerText = element.title;
+/**
+ * This function takes in an array and sorts the tasks with the status doing and displays them dynamically.
+ * @param {array} tasks -array of objects.
+ */
+function loadDoingTasks(tasks) {
+  tasks.forEach((task) => {
+    if (task.status === "doing") {
+      const doingTask = document.createElement("div");
+      doingTask.innerText = task.title;
 
       doingTask.classList.add(
         "bg-primary-color",
@@ -114,17 +127,22 @@ function LoadDoingTasks(tasksArray) {
         "rounded-md",
         "shadow-lg"
       );
-      doingTask.addEventListener("click", () => openModal(element));
+      doingTask.addEventListener("click", () => openModal(task));
 
       doingContainer.appendChild(doingTask);
     }
   });
 }
-function LoadDoneTasks(tasksArray) {
-  tasksArray.forEach((element) => {
-    if (element.status === "done") {
-      let doneTask = document.createElement("div");
-      doneTask.innerText = element.title;
+/**
+ * This function takes in an array and sorts the tasks with the status done and displays them dynamically.
+ * @param {array} tasks -array of objects.
+ *
+ */
+function loadDoneTasks(tasks) {
+  tasks.forEach((task) => {
+    if (task.status === "done") {
+      const doneTask = document.createElement("div");
+      doneTask.innerText = task.title;
 
       doneTask.classList.add(
         "bg-primary-color",
@@ -138,13 +156,15 @@ function LoadDoneTasks(tasksArray) {
         "rounded-md",
         "shadow-lg"
       );
-      doneTask.addEventListener("click", () => openModal(element));
+      doneTask.addEventListener("click", () => openModal(task));
 
       doneContainer.appendChild(doneTask);
     }
   });
 }
 
-LoadTodoTasks(initialTasks);
-LoadDoingTasks(initialTasks);
-LoadDoneTasks(initialTasks);
+closeModalBtn.addEventListener("click", closeModal);
+
+loadTodoTasks(initialTasks);
+loadDoingTasks(initialTasks);
+loadDoneTasks(initialTasks);

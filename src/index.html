@@ -106,13 +106,14 @@
         </main>
       </div>
     </div>
-
+    <!-- modal -->
     <dialog
       id="edit-modal"
       class="backdrop:bg-black/50 fixed inset-0 m-auto max-w-md w-[90vw] rounded-lg p-0 border-0"
     >
       <div class="w-[90vw] max-w-md bg-white p-6 rounded-lg shadow-xl">
         <form>
+          <!-- Heading of modal and close button  -->
           <div class="flex">
             <h1 class="font-bold mr-auto text-lg text-primary-font-color mb-4">
               Task
@@ -125,7 +126,7 @@
               &times;
             </button>
           </div>
-
+          <!-- task title and input  -->
           <div class="flex flex-col gap-1 mb-4">
             <label
               for="modal-title"
@@ -138,6 +139,7 @@
               type="text"
             />
           </div>
+          <!-- task description and input  -->
           <div class="flex flex-col gap-1 mb-4">
             <label
               for="modal-description"
@@ -150,7 +152,7 @@
               id="modal-description"
             ></textarea>
           </div>
-
+          <!-- task status and select box  -->
           <div class="flex flex-col gap-1 mb-4">
             <label
               for="modal-status"
