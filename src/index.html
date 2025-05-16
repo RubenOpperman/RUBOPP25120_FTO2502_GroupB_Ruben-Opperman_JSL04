@@ -107,35 +107,67 @@
       </div>
     </div>
 
-    <div
+    <dialog
       id="edit-modal"
-      class="fixed inset-0 flex bg-opacity-50 items-center justify-center hidden z-50"
+      class="backdrop:bg-black/50 fixed inset-0 m-auto max-w-md w-[90vw] rounded-lg p-0 border-0"
     >
-      <div>
-        <h1>Task</h1>
-        <div>
-          <label>Title</label>
-          <input id="modal-title" class="border-black border-3" type="text" />
-        </div>
-        <div>
-          <label>Description</label>
-          <textarea
-            class="border-black border-3"
-            name=""
-            id="modal-description"
-          >
-          </textarea>
-        </div>
+      <div class="w-[90vw] max-w-md bg-white p-6 rounded-lg shadow-xl">
+        <form>
+          <div class="flex">
+            <h1 class="font-bold mr-auto text-lg text-primary-font-color mb-4">
+              Task
+            </h1>
+            <button
+              type="button"
+              id="close-modal"
+              class="flex ml-auto text-2xl text-[#EA5555] place-content-start items-start"
+            >
+              &times;
+            </button>
+          </div>
 
-        <div>
-          <label>Status</label>
-          <select id="modal-status" class="border-black border-3">
-            <option value="todo">Todo</option>
-            <option value="doing">Doing</option>
-            <option value="done">Done</option>
-          </select>
-        </div>
+          <div class="flex flex-col gap-1 mb-4">
+            <label
+              for="modal-title"
+              class="text-secondary-font-color text-xs font-bold"
+              >Title</label
+            >
+            <input
+              id="modal-title"
+              class="font-medium text-sm leading-6 text-primary-font-color rounded-sm border border-border-color p-2"
+              type="text"
+            />
+          </div>
+          <div class="flex flex-col gap-1 mb-4">
+            <label
+              for="modal-description"
+              class="text-secondary-font-color text-xs font-bold"
+              >Description</label
+            >
+            <textarea
+              class="font-medium text-sm leading-6 text-primary-font-color rounded-sm border border-border-color p-2"
+              name=""
+              id="modal-description"
+            ></textarea>
+          </div>
+
+          <div class="flex flex-col gap-1 mb-4">
+            <label
+              for="modal-status"
+              class="text-secondary-font-color text-xs font-bold"
+              >Status</label
+            >
+            <select
+              id="modal-status"
+              class="font-medium text-sm leading-6 text-primary-font-color rounded-sm border border-border-color p-2"
+            >
+              <option value="todo">Todo</option>
+              <option value="doing">Doing</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+        </form>
       </div>
-    </div>
+    </dialog>
   </body>
 </html>

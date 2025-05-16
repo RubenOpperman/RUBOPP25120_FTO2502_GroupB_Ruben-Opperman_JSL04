@@ -49,6 +49,7 @@ const modal = document.getElementById("edit-modal");
 const titleInput = document.getElementById("modal-title");
 const descriptionInput = document.getElementById("modal-description");
 const statusSelect = document.getElementById("modal-status");
+const closeModalBtn = document.getElementById("close-modal");
 
 let selectedTask = null;
 function openModal(task) {
@@ -58,7 +59,7 @@ function openModal(task) {
   descriptionInput.value = task.description;
   statusSelect.value = task.status;
 
-  modal.classList.remove("hidden");
+  modal.showModal();
 }
 
 function LoadTodoTasks(tasksArray) {
@@ -85,6 +86,15 @@ function LoadTodoTasks(tasksArray) {
     }
   });
 }
+function closeModal() {
+  modal.close();
+  selectedTask = null;
+  titleInput.value = "";
+  descriptionInput.value = "";
+  statusSelect.value = "";
+}
+
+closeModalBtn.addEventListener("click", closeModal);
 
 function LoadDoingTasks(tasksArray) {
   tasksArray.forEach((element) => {
